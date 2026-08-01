@@ -3,11 +3,11 @@ WORKDIR /app
 
 FROM base AS deps
 COPY package.json package-lock.json* ./
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 FROM base AS build
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN npm install
 COPY tsconfig.json ./
 COPY src ./src
 RUN npm run build
